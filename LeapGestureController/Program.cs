@@ -13,7 +13,7 @@ namespace LeapGestureController
 {
     static class Program
     {
-        public const int FRAMES_PER_SECOND = 1000; //the amount of update cycles per second. The higher the number, the greater the precision
+        public const int FRAMES_PER_SECOND = 60; //the amount of update cycles per second. The higher the number, the greater the precision
         private static Boolean isRunning = true; //whether the update loop is running
 
         private static Stopwatch timer; //var for time elapsed
@@ -43,7 +43,7 @@ namespace LeapGestureController
         {
             Frame currentFrame = cont.Frame();
 
-            Console.WriteLine(time.Milliseconds);
+            Console.WriteLine();
         }
 
         /**
@@ -55,13 +55,18 @@ namespace LeapGestureController
             timer = new Stopwatch();
             timer.Start();
 
+            Stopwatch updateTimer = new Stopwatch();
+
             while (isRunning)
             {
                 timer.Stop();
                 TimeSpan elapsedTime = timer.Elapsed; //stop the timer and record the amount of time passed
+                timer.Restart();
+                updateTimer.Start();
                 Update(elapsedTime); //call to Update and pass the amount of time since the last call to Update
-                Thread.Sleep(1000/FRAMES_PER_SECOND -  elapsedTime.Milliseconds); //wait out the remaining time for this update cycle
-                timer.Start();
+                updateTimer.Stop();
+                Thread.Sleep(1000/FRAMES_PER_SECOND -  (int)timer.ElapsedMilliseconds); //wait out the remaining time for this update cycle
+                updateTimer.Restart();
             };
 
             timer.Stop();
