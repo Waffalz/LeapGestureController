@@ -22,6 +22,9 @@ namespace LeapGestureController
 
         private static Controller cont;
 
+        private static float altitude = 0f;
+        private static float speed = 10f;
+
         static void Main(string[] args)
         {
             cont = new Controller();
@@ -29,10 +32,10 @@ namespace LeapGestureController
             loopThread = new Thread(BeginLoop);
             loopThread.Start();
 
-            Thread.Sleep(10 * 1000);
+            //Thread.Sleep(30 * 1000);
 
-            StopLoop();
-            
+            //StopLoop();
+            loopThread.Join();
         }
 
         /**
@@ -43,7 +46,20 @@ namespace LeapGestureController
         {
             Frame currentFrame = cont.Frame();
 
-            Console.WriteLine();
+            float timeElapsed = (float)(time.TotalMilliseconds / 1000); //amound of time elapsed in seconds
+
+            
+            foreach(Hand hand in currentFrame.Hands)
+            {
+                //Console.Write(hand.Direction);
+                altitude += timeElapsed * speed * hand.Direction.y;
+                Console.WriteLine(hand.Direction.y);
+
+            }
+            //Console.WriteLine(altitude);
+
+            //Console.WriteLine(time.Milliseconds);
+
         }
 
         /**
@@ -65,7 +81,7 @@ namespace LeapGestureController
                 updateTimer.Start();
                 Update(elapsedTime); //call to Update and pass the amount of time since the last call to Update
                 updateTimer.Stop();
-                Thread.Sleep(1000/FRAMES_PER_SECOND -  (int)timer.ElapsedMilliseconds); //wait out the remaining time for this update cycle
+                Thread.Sleep(Math.Max(1000/FRAMES_PER_SECOND -  (int)timer.ElapsedMilliseconds, 0)); //wait out the remaining time for this update cycle
                 updateTimer.Restart();
             };
 
