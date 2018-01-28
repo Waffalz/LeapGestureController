@@ -1,1 +1,7 @@
 c:\users\ethan\documents\visual studio 2015\Projects\LeapGestureController\LeapGestureController\bin\Debug\LeapGestureController.exe.config
+C:\Users\Ethan\documents\visual studio 2015\Projects\LeapGestureController\LeapGestureController\bin\Debug\LeapGestureController.exe
+C:\Users\Ethan\documents\visual studio 2015\Projects\LeapGestureController\LeapGestureController\bin\Debug\LeapGestureController.pdb
+C:\Users\Ethan\documents\visual studio 2015\Projects\LeapGestureController\LeapGestureController\obj\Debug\LeapGestureController.csprojResolveAssemblyReference.cache
+C:\Users\Ethan\documents\visual studio 2015\Projects\LeapGestureController\LeapGestureController\obj\Debug\LeapGestureController.exe
+C:\Users\Ethan\documents\visual studio 2015\Projects\LeapGestureController\LeapGestureController\obj\Debug\LeapGestureController.pdb
+C:\Users\Ethan\documents\visual studio 2015\Projects\LeapGestureController\LeapGestureController\bin\Debug\LeapCSharp.NET4.5.dll
